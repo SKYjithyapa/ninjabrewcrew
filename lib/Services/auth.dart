@@ -33,6 +33,22 @@ class AuthService {
   // Other authentication methods can be added here
 
   // sign in with email & password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? CurrentUser = result.user;
+      return _customModelForFirebaseUser(CurrentUser);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+
+
+
+
   // register with email & password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
